@@ -247,7 +247,7 @@ if __name__ == "__main__":
     #==========================================
     # Graph Stuff
     #==========================================
-    os.makedirs("report", exist_ok=True)
+    os.makedirs("docs", exist_ok=True)
 
 
 
@@ -263,7 +263,7 @@ if __name__ == "__main__":
     plt.grid(True)
     plt.legend()
     plt.tight_layout()
-    plt.savefig("report/drawdown.png", dpi=200, bbox_inches="tight")
+    plt.savefig("docs/drawdown.png", dpi=200, bbox_inches="tight")
     plt.close()
 
 
@@ -279,7 +279,7 @@ if __name__ == "__main__":
     plt.grid(True)
     plt.legend()
     plt.tight_layout()
-    plt.savefig("report/drawdown.png", dpi=200, bbox_inches="tight")
+    plt.savefig("docs/drawdown.png", dpi=200, bbox_inches="tight")
     plt.close()
 
     
@@ -295,7 +295,7 @@ if __name__ == "__main__":
     plt.grid(True)
     plt.legend()
     plt.tight_layout()
-    plt.savefig("report/drawdown.png", dpi=200, bbox_inches="tight")
+    plt.savefig("docs/drawdown.png", dpi=200, bbox_inches="tight")
     plt.close()
 
 
