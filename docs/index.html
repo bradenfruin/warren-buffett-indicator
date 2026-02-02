@@ -51,6 +51,27 @@
   </head>
   <body>
     <h1>Warren Buffett Indicator / FGI Cubic Strategy Report</h1>
+    <h2>Strategy</h2>
+    <p>
+      Warren Buffett's famous advice, "Be fearful when others are greedy, and be greedy when others are fearful", sounds brilliant in theory. But does it actually work? I wanted to find out, using some algebra and code, whether his words hold up.
+    
+    </p>
+    <p>
+      My approach focused on the Fear and Greed Index (FGI), which measures market sentiment on a scale from 0 to 100. Zero means the markets in free fall and everyone's panicking. One hundred means pure, irrational greed. I figured if Buffett's right (he usually is), I should be able to build a strategy that buys when the index is low and sells when it's high.
+    </p>
+    <p>
+      The math came down to this equation: y = -(x-60) ³ / 2160, where x is the day's FGI value. This spits out a number between -100 and 100 that tells me how much to buy or sell. Now, I know most people can't visualize a cubic function off the top of their head, and that's completely fine. You shouldn't need a math degree to understand what I'm doing here. That's why I've included a graph below.
+    </p>
+    <p>
+      I chose a cubic function specifically because it does two things really well. First, it has an axis of symmetry around its center point. At the center (where FGI equals 60), y equals zero, meaning we neither buy nor sell aka we stay neutral. Second, cubic functions have this aggressive end behavior where they shoot up or down dramatically as you move away from the center. This means when the market hits extreme fear or extreme greed, the function tells us to make big bets.
+    </p>
+    <p>
+      Here's how that plays out: If we hit extreme greed (FGI near 100), we get a large negative y value, which means sell aggressively before the inevitable crash. If we hit extreme fear (FGI near 0), we get a large positive y value, which means buying heavily while stocks are at a discount.
+    </p>
+    <p>
+      The code itself is straightforward; it grabs the FGI for each day, calculates how much to buy or sell based on the equation, executes the trade, then moves to the next day. I ran this simulation over 12 years, from 2011 through 2023, deliberately choosing this period so I could see how the strategy handled both the COVID bear market and the bull run that followed. If Buffett's wisdom was going to prove itself, surely it would shine during times like these.
+    </p>
+    
     <h2>Summary Metrics</h2>
       <table>
         <tr><th>Metric</th><th>FGI Strategy</th><th>Buy & Hold SPY</th></tr>
@@ -68,5 +89,29 @@
 
     <h2>Running Max Drawdown</h2>
     <img src="running_max_dd.png" alt="Running max drawdown" />
+
+    <h2>Reflection</h2>
+    <p>
+      When I originally got the results for this, I couldn't help but say I was slightly disappointed. I was very puzzled at the fact that a strategy that sold high and bought low could be outperformed by a buy-and-hold strategy.  Initially, I thought my math was wrong, as it seemed the most logical answer, yet I was still running into similar problems. The fear and greed index was being processed correctly every day, and it was buying or selling the correct amount. I then changed the crossover point from 60 -> 50 and still underperformed the market. I then switched to a sin function, which has the same properties as a cubic function, being symmetrical and aggressive end behavior, yet still underperformed. Now, since my math wasn’t wrong, there has to be something wrong with my approach. That's when I started digging deeper into why this was happening, and I stumbled onto something pretty elementary that I should have seen coming. It turns out that most of the market's annual returns don't come from steady, consistent gains throughout the year. They're concentrated in just a handful of days, roughly 10-15 days out of the entire year, where the market surges dramatically.
+    </p>
+    <p>
+      Many of these explosive up days happen during or right after periods of extreme volatility and fear. Exactly when sentiment is transitioning from panic back toward optimism. Like March 2020 during COVID, or the sharp rebounds during the 2008 financial crisis. The problem with my strategy is that it's constantly moving in and out of the market based on sentiment shifts. Even though I was buying during fear, the timing of my entries and exits meant I was often underinvested or completely out during these critical rebound days. I might sell during a period of rising greed, missing the final surge of a bull run, or I might be in the process of gradually buying back in when the market suddenly rockets upward.
+    </p>
+    <p>
+      So, it turns out Buffett was right, and all the extra math I did was complicating things. The strategy of having quick cash to deploy when a market is failing is a universal truth. But I still think you should take his claim with a grain of salt. His claim is only true at the extremes of fear and greed. For example, if a market is between fear and neutral, it is better to save the cash until the market goes into extreme fear rather than investing a little bit in the market, and vice versa for greed. 
+    </p>
+    <p>
+      Although my initial results are wrong, I still think the data has some merits to it. When you look at the maximum drawdown, my approach had significantly lower drawdowns than buy-and-hold. While buy-and-hold investors were enduring brutal 30-40% drops, my strategy kept losses more contained. Which made sense because when the market went from greed to fear, we were mostly out. Minimizing our losses, but when it went from fear to greed, we were still getting into the market, therefore hindering our upside. 
+    </p>
+    <p>
+      My strategy has less upside but also less downside than the S&P 500. But if we look at it through a different lens, the market has more upside and also more downside than our strategy. But this relationship reminds me of something. LEVERAGED ETFs!!! Just like how you can buy Triple Leveraged QQQ to get 3x the gains or losses of the Nasdaq, you can buy the S&P500 to get 1.1x the gains and losses of the strategy we just defined. I know it seems stupid, like who really cares about making a reverse leveraged version of the market, but I think it is helpful to understand how leveraged ETFs work, and who knows, maybe during the drawdowns of 30-40%, people sold. Whereas if they used the FGI strategy, they would have stayed in because it made the losses more stomachable. 
+    </p>
+    <p>
+      I still think what I did was pretty interesting because everything in the trading/wealth management world has been about beating the market. Making the “market” this sort of elusive north star acting as the judge, jury, and executioner for all trading strategies alike. In addition, the term “Beta” is another term for the market used by hedge funds to figure out their performance. For example, if a hedge fund returns 30% ROI for the year and the S&P gave 10% ROI, then “Beta” would be 10 %. Meaning that the hedge fund outperformed the market by 20% (30% - 10%), which is also known as “alpha”. So, I think that it is pretty cool that I figured out a way to make the “Beta’s beta” even though it was unintentional. 
+    </p>
+    <p>
+      All in all, I regret to inform you that Buffett was, in fact, right, but that won't stop me from finding the next “alpha’s alpha”.
+    </p>
+    
   </body>
 </html>
